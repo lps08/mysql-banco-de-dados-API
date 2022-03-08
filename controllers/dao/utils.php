@@ -1,14 +1,17 @@
 <?php
 
 class Utils {
-    public static function getPropetiesInsertValues(array $element) {
+
+    # get all the table propeties to insert a row in database
+    public static function getQueryToInsertValues(array $element) {
         $propertiesValues = join(', ', array_keys($element));
         $propertiesParams = join(', ', self::getDotsParams(array_keys($element)));
 
         return array($propertiesValues, $propertiesParams);
     }
 
-    public static function getPropetiesUpdateValues(array $element) {
+    # get all the table propeties to update a row in database
+    public static function getQueryToUpdateValues(array $element) {
         $properties = [];
         for ($i=0; $i < count($element); $i++) {
             if (array_keys($element)[$i] == 'id') continue;

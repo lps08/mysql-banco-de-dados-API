@@ -10,11 +10,11 @@ abstract class DAO {
         $con = DBClass::connect();
 
         #INSERT INTO Cliente (nome, sexo, nascimento, raca, telefone, endereco, bairro, municipio) VALUES ('Cliente 1', 'masculino', '2021-06-04', 'branca', 086999948302, 'Rua meclanche', 'cria', 'Piaui');
-        $query = "INSERT INTO ". $this->table ."(". Utils::getPropetiesInsertValues($element)[0] . ") VALUES (". Utils::getPropetiesInsertValues($element)[1] . ')';
+        $query = "INSERT INTO ". $this->table ."(". Utils::getQueryToInsertValues($element)[0] . ") VALUES (". Utils::getQueryToInsertValues($element)[1] . ')';
         
         $stmt = $con->prepare($query);
         
-        $valueBind = explode(', ', Utils::getPropetiesInsertValues($element)[1]);
+        $valueBind = explode(', ', Utils::getQueryToUpdateValues($element)[1]);
 
         for ($i=0; $i < count($valueBind); $i++) { 
             // echo print_r($valueBind[$i] . '=>' . $element[substr($valueBind[$i], 1)], true);
@@ -39,7 +39,7 @@ abstract class DAO {
         $con = DBClass::connect();
 
         #UPDATE nome_tabela SET CAMPO = "novo_valor" WHERE CONDIÇÃO
-        $query = "UPDATE ". $this->table ." SET ". Utils::getPropetiesUpdateValues($element) . " WHERE ". $this->table .".id = :id";
+        $query = "UPDATE ". $this->table ." SET ". Utils::getQueryToUpdateValues($element) . " WHERE ". $this->table .".id = :id";
 
         $stmt = $con->prepare($query);
         $stmt->bindValue(':id', $element['id']);
