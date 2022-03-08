@@ -2,10 +2,10 @@
 
 class DBClass {
 
-    private static $host = "localhost";
-    private static $username = "lps";
-    private static $password = "lucianodb"; 
-    private static $database = "form_med";
+    private static $host = $_ENV["HOST"];
+    private static $username = $_ENV["DB_USER"];
+    private static $password = $_ENV["DB_PASSWD"]; 
+    private static $database = $_ENV["DB_NAME"];
    
     public static function connect(){
        $connection = null;
