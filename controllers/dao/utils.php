@@ -5,7 +5,7 @@ class Utils {
     # get all the table propeties to insert a row in database
     public static function getQueryToInsertValues(array $element) {
         $propertiesValues = join(', ', array_keys($element));
-        $propertiesParams = join(', ', self::getDotsParams(array_keys($element)));
+        $propertiesParams = join(', ', self::addColonToQuery(array_keys($element)));
 
         return array($propertiesValues, $propertiesParams);
     }
@@ -21,7 +21,7 @@ class Utils {
         return join(', ', $properties);
     }
 
-    private static function getDotsParams(array $element) {
+    private static function addColonToQuery(array $element) {
         for ($i=0; $i < count($element); $i++) { 
             $element[$i] = ':' . $element[$i];            
         }
