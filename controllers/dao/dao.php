@@ -1,7 +1,7 @@
 <?php
 
-require_once "/home/lps/codes/apiMysql/controllers/dao/utils.php";
-require_once "/home/lps/codes/apiMysql/controllers/database/database.php";
+require_once "/var/www/html/controllers/dao/utils.php";
+require_once "/var/www/html/controllers/database/database.php";
 
 abstract class DAO {
     public $table = '';

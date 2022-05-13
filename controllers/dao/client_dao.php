@@ -1,6 +1,6 @@
 <?php
 
-require_once "/home/lps/codes/apiMysql/controllers/dao/dao.php";
+require_once "/var/www/html/controllers/dao/dao.php";
 
 class ClientDAO extends DAO{
     public $table = 'Cliente';
