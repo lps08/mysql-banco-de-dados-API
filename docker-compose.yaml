@@ -1,0 +1,35 @@
+version: '3'
+services:
+  web:
+    # image: php:7.4.18-apache
+    build: .
+    restart: always
+    volumes:
+      - "./:/var/www/html"
+    ports:
+      - 9000:80
+    depends_on:
+      - db
+    environment:
+      DB_LINK_NAME : db
+      DB_HOST: '${DB_HOST}'
+      DB_NAME: '${DB_NAME}'
+      DB_USER: '${DB_USER}'
+      DB_PASSWD: '${DB_PASSWD}' 
+  db:
+    image: mysql:latest
+    environment:
+      # TZ: "Europe/Rome"
+      MYSQL_DATABASE: '${DB_NAME}'
+      MYSQL_USER: '${DB_USER}'
+      MYSQL_PASSWORD: '${DB_PASSWD}' 
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWD}'
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.0.1
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_USER: '${DB_USER}'
+      PMA_PASSWORD: '${DB_PASSWD}'
+    ports:
+      - "5000:80"
