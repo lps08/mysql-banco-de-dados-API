@@ -1,7 +1,7 @@
 <?php
 
-require_once "controllers/dao/dao.php";
-require_once "controllers/controller.php";
+require_once "/var/www/html/controllers/dao/dao.php";
+require_once "/var/www/html/controllers/controller.php";
 
 class Requester {
 
@@ -16,7 +16,7 @@ class Requester {
     private function getControllerRequested(string $tableName) {
         for ($i=0; $i < count($this->daos_list); $i++) { 
             
-            if ($this->daos_list[$i]->$tableName == $tableName) {
+            if ($this->daos_list[$i]->table == $tableName) {
                 $daoRequested = $this->daos_list[$i];
                 $controllerResquested = new Controller($daoRequested);
 
